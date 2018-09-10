@@ -53,7 +53,7 @@ BotToken = "ABCDEFG"
 # BotAutoReconnect : Set if the bot should Automatically Reconnect when disconnected.
 
 LogCommands = True
-BotBoundToGuilds = True
+BotBoundToGuiids = True
 BotDMOwnerOnRestart = False
 BotAutoReconnect = True
 
