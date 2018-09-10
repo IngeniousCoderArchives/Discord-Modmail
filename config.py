@@ -42,5 +42,13 @@ BotOwnerID = 0000000000
 
 DiscordRoleRequiredToCloseThreads = 000000000
 
+# DiscordModmailLogChannel = The channel where the bot should send log to. Put 0 to disable, Put 1 to make the bot automatically create one.
+
+DiscordModmailLogChannel = 0
+
+# BotToken = The bot token for the Oauth2 App.
+
+BotToken = "ABCDEFG"
+
 #End of config.
 
