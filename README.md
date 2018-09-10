@@ -19,3 +19,6 @@ REPOSITORY IS NOT READY.
 ## License
 
 ## Donate
+
+## WARNING
+Do NOT Delete any file manually.
