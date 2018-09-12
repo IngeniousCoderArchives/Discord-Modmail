@@ -1,0 +1,3 @@
+TICKET NAME : SHOULD BE TICKET ID
+TICKET FORMAT :
+[{ticket_id:123,ticket_user:2356468,ticket_date_create:"12/12/12",ticket_date_close:"12/12/12",ticket_type:"Bot"},[{message_id:12345,message_content:"Bye",message_user:123456,message_time:"2018-01-01 12:20pm LOCAL"},{message_id:12345,message_content:"Bye",message_user:123456,message_time:"2018-01-01 12:20pm LOCAL"}]]

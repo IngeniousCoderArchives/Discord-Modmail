@@ -39,7 +39,6 @@ except:
     exit()
 
 LAUNCHER_MENU = """
-
 --------------------------------
 | INGENIOUSCODER's MODMAIL BOT |
 --------------------------------
@@ -47,8 +46,7 @@ Select an option:
 1. View Configuration
 2. Start Bot
 3. Reset Configuration
-4. Reset Bot (and Data)
-5. Setup (Use if bot cannot run when Starting)
+4. Setup (Use if bot cannot run when Starting)
 
 For support, please submit a issue in Github."""
 
@@ -129,6 +127,10 @@ def config():
         disconnect = "True"
     else:
         disconnect = "False"
+    if BotUseEmbeds:
+        embed = "True"
+    else:
+        embed = "False"
     #Set up config screen
     config_screen = [f"--------------------------------\n",
                      f"|     CUSTOM CONFIG VALUES     |\n",
@@ -145,9 +147,12 @@ def config():
                      f"Role Required to close threads          : {rolethread}\n",
                      f"Discord Modmail Logging Channel ID      : {logid}\n",
                      f"Logging output to logs?                 : {logs}\n",
+                     f"Bot Playing Status                      : {BotPlayingStatus}\n",
+                     f"Bot Prefix (The prefix used for cmds)   : {BotPrefix}\n",
                      f"Bot Bound to Home Guild(s) ?            : {bound}\n",
                      f"Bot DMs Owner when restarted?           : {dmrestart}\n",
-                     f"Bot Auto Reconnects after Disconnected? : {disconnect}\n"]
+                     f"Bot Auto Reconnects after Disconnected? : {disconnect}\n",
+                     f"Should Bot use embeds?                  : {embed}\n"]
     clear_screen()
     for item in config_screen:
         print(item)
@@ -164,8 +169,7 @@ def home():
             1. View Configuration
             2. Start Bot
             3. Reset Configuration
-            4. Reset Bot (and Data)
-            5. Setup (Use if bot cannot run when Starting)"""
+            4. Setup (Use if bot cannot run when Starting)"""
         try:
             u_i = int(input("Please enter the option number > "))
         except:
@@ -178,8 +182,6 @@ def home():
         elif u_i == 3:
             reset_config()
         elif u_i == 4:
-            reset_bot()
-        elif u_i == 5:
             setup()
         else:
             print("Input not recognised.")
@@ -189,19 +191,52 @@ def home():
 
 def start():
     #Start bot
-    return
+    log("Now Starting Bot.")
+    clear_screen()
+    time.sleep(1)
+    os.system("bot.py")
+    log("An Error Occured! `bot.py cannot be run due to errors`.","FATAL")
+    log("Please report this to github, stating your Version Number. The version number is at README.md of the local directory.","FATAL")
+    log("We are sorry for the inconveience!","FATAL")
+    log("WARNING - Program has crashed.","FATAL")
+    input("Press Enter to continue.")
+    exit()
 
 def reset_config():
     #Reset config
-    return
-
-def reset_bot():
-    #Reset bot
-    return
+    clear_screen()
+    print("WARNING : ARE YOU SURE YOU WANT TO WIPE YOUR CONFIG AND RESET IT?")
+    print("Please type \"YES\" TO CONFIRM.")
+    inp = input("> ")
+    if inp != "YES":
+        print("Cancelled.")
+        time.sleep(1)
+        home()
+    else:
+        print("Configuration File is now resetting.")
+        #Delete current config.
+        os.unlink("config.py")
+        file = open("stable/st-config.py","r")
+        content = file.read()
+        file.close()
+        file = open("config.py","w")
+        file.write(content)
+        file.close()
+        time.sleep(1)
+        print("Configuration has been reset.")
+        time.sleep(2)
+        home()
 
 def setup():
     #Setup and install requirements
-    return
+    log("Now installing : Discord.py (Rewrite)")
+    log("If any errors happen, it means your python installation is corrputed. Contact us at Github for assistance.","NOTICE")
+    log("Notice : GIT IS REQUIRED. IF YOU HAVE NO EXISTING GIT INSTALLATION, THE INSTALLATION WILL FAIL.","WARN")
+    time.sleep(1)
+    os.system("python -m pip install -U git+https://github.com/Rapptz/discord.py@rewrite#egg=discord.py[voice]")
+    log("Dependencies Installed.")
+    time.sleep(2)
+    home()
 
 
 

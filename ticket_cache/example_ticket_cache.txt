@@ -1,0 +1,3 @@
+This file's name should be the ID of the ticket.
+Example Ticket Cache file :
+{ticket_id:123445,ticket_channel:12345,ticket_created_date:"2018-01-01",ticket_author:12345667,ticket_type:"Bot"}

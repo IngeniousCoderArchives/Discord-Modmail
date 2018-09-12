@@ -44,18 +44,22 @@ DiscordModmailLogChannel = 0
 
 # BotToken : The bot token for the Oauth2 App.
 # BotPlayingStatus : The bot playing status as shown in discord.
+# BotPrefix : The bot prefix.
 BotToken = "ABCDEFG"
+BotPlayingStatus = "DM to contact mods!"
+BotPrefix = "mail."
 
 # The 4 options below take booleans (True / False).
 # LogCommands : Set if the bot should log into the logs folder.
 # BotBoundToGuilds : Set if the bot should be bound to the Main and Staff Guilds. (Should the bot auto-leave other guilds when it is added to them?)
 # BotDMOwnerOnRestart : Set if the bot should DM the Oauth2 Owner everytime on Restart.
 # BotAutoReconnect : Set if the bot should Automatically Reconnect when disconnected.
-
+# BotUseEmbeds : Weather to use rich embeds.
 LogCommands = True
 BotBoundToGuilds = True
 BotDMOwnerOnRestart = False
 BotAutoReconnect = True
+BotUseEmbeds = True
 
 #End of config.
 
