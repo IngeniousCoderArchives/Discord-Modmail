@@ -83,7 +83,7 @@ def GetTime(sec):
 
 @bot.command()
 async def help(ctx):
-    if ctx.guild.id != default_config.get("StaffGuildID"):
+    if ctx.guild.id == default_config.get("StaffGuildID"):
       prefix = default_config.get("BotPrefix")
       main_guild = bot.get_guild(default_config.get("MainGuildID"))
       help1 = discord.Embed(title='Hello!', description=f"I am an instance of [IngeniousCoder\'s Modmail Bot](https://github.com/IngeniousCoder/Discord-Modmail). DM me to contact the moderators of {main_guild.name}!", colour=0xDEADBF)
