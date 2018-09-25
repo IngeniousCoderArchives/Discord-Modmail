@@ -26,7 +26,8 @@ Version 1.0.0
 
 6. Go to app settings, press reveal config vars.
 
-7. Enter ALL the config variables listed below and their respective value.
+7. Enter ALL the config variables listed below and their respective value. The end result should be something like [this](https://cdn.discordapp.com/attachments/490011895663820811/494074082292137985/unknown.png)
+
 
 |Config Var|Value|
 |------|-------|
@@ -42,6 +43,11 @@ Version 1.0.0
 |BotDMOwnerOnRestart|bool:True/False. Wheater the bot should DM bot owner when restart.|
 |BotAutoReconnect|bool:True/False Wheater the bot should auto-reconnect if it becomes disconnected.|
 |**FROM_HEROKU**|True. THIS MUST BE TRUE.|
+
+Reference : You can refer to this video which teaches you how to host a bot in heroku. However, please DO NOT FOLLOW STEP BY STEP because your target here is to get a feel on how to create a bot on heroku not follow what it teaches. 
+
+Video : https://www.youtube.com/watch?v=6za78ipFzg4
+
 
 8. Go to Workers, and start the worker.
 
