@@ -81,6 +81,11 @@ Q: Which users can use the modmail commands?
 A: Modmail commands can only be used in the modmail thread channels. Thus, whoever can see the channels can use the commands!
    
    However, for other administrative commands, Manage Server is required.
+   
+-----------------
+Q: When FROM_HEROKU is specified, it creates three channels. Can I delete them?
+
+A: NO. The bot stores data on the channels. As such, those channels cannot be deleted, renamed or modified in any way.
 
 # TODO
 
