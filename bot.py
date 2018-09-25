@@ -87,7 +87,7 @@ async def help(ctx):
       prefix = default_config.get("BotPrefix")
       main_guild = bot.get_guild(default_config.get("MainGuildID"))
       help1 = discord.Embed(title='Hello!', description=f"I am an instance of [IngeniousCoder\'s Modmail Bot](https://github.com/IngeniousCoder/Discord-Modmail). DM me to contact the moderators of {main_guild.name}!", colour=0xDEADBF)
-      help1.set_author(name='IngeniousCoder\'s Modmail Bot',icon="https://cdn.discordapp.com/attachments/388917080570986526/490075804496297995/8eebd924aeb72f681f0bc7c94226883e.png")
+      help1.set_author(name='IngeniousCoder\'s Modmail Bot',icon_url="https://cdn.discordapp.com/attachments/388917080570986526/490075804496297995/8eebd924aeb72f681f0bc7c94226883e.png")
       help1.add_field(name="Help me!",value="Donate to me [here](https://patreon.com/eltontay11) or [Star my repository!](https://github.com/IngeniousCoder/Discord-Modmail)",inline=False)
       help1.add_field(name="{}uptime".format(prefix), value="Shows bot uptime", inline=False)
       help1.add_field(name="{}help".format(prefix), inline=False, value="Shows the help message.")
