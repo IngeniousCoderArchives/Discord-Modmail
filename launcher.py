@@ -77,7 +77,7 @@ def log(text,type1="INFO"):
 
 log("Logging is now set up.")
 
-def config():
+def configv1():
     #View Configuration
     log("Notice. If Python Throws an error, it means the config is corrupted and cannot be loaded.","NOTICE")
     
@@ -127,10 +127,6 @@ def config():
         disconnect = "True"
     else:
         disconnect = "False"
-    if BotUseEmbeds:
-        embed = "True"
-    else:
-        embed = "False"
     #Set up config screen
     config_screen = [f"--------------------------------\n",
                      f"|     CUSTOM CONFIG VALUES     |\n",
@@ -151,8 +147,7 @@ def config():
                      f"Bot Prefix (The prefix used for cmds)   : {BotPrefix}\n",
                      f"Bot Bound to Home Guild(s) ?            : {bound}\n",
                      f"Bot DMs Owner when restarted?           : {dmrestart}\n",
-                     f"Bot Auto Reconnects after Disconnected? : {disconnect}\n",
-                     f"Should Bot use embeds?                  : {embed}\n"]
+                     f"Bot Auto Reconnects after Disconnected? : {disconnect}\n"]
     clear_screen()
     for item in config_screen:
         print(item)
@@ -187,20 +182,26 @@ def home():
             print("Input not recognised.")
 
 
-
+def config():
+    print("Your configuration file can be viewed at config.py.")
+    time.sleep(3)
 
 def start():
     #Start bot
-    log("Now Starting Bot.")
-    clear_screen()
-    time.sleep(1)
-    os.system("bot.py")
-    log("An Error Occured! `bot.py cannot be run due to errors`.","FATAL")
-    log("Please report this to github, stating your Version Number. The version number is at README.md of the local directory.","FATAL")
-    log("We are sorry for the inconveience!","FATAL")
-    log("WARNING - Program has crashed.","FATAL")
-    input("Press Enter to continue.")
-    exit()
+    while True:
+      log("Now Starting Bot.")
+      time.sleep(1)
+      clear_screen()
+      time.sleep(1)
+      os.system("bot.py")
+      log("An Error Occured! `bot.py cannot be run due to errors`.","FATAL")
+      log("Please report this to github, stating your Version Number. The version number is at README.md of the local directory.","FATAL")
+      log("We are sorry for the inconveience!","FATAL")
+      log("WARNING - Program has crashed.","FATAL")
+      log("Retrying in 10 seconds.")
+      os.system("timeout 10")
+      clear_screen()
+      
 
 def reset_config():
     #Reset config
@@ -237,6 +238,8 @@ def setup():
     log("Dependencies Installed.")
     time.sleep(2)
     home()
+
+
 
 
 
