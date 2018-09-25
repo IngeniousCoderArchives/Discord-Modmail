@@ -1,26 +1,30 @@
-REPOSITORY IS NOT READY.
+
 
 # Discord Modmail
 Version 1.0.0 
 ## Setup
 
-### Installation
+1. Install python 3.6 to your local device. Please tick on add python to path when installing
 
-### Configuration
+2. Change the values in config.py 
+
+3. Run ```run_launcher.bat``` and follow instructions!
 
 ## Usage
 
 ### Commands
 
-### Replying to Threads
+Do ```{prefix}help``` in the staff guild for help.
 
-### Viewing Logs
 
 ## Support
 
-## License
+https://discord.gg/jSBZtE or open a ticket here.
 
 ## Donate
+
+Love the bot? Donate and help me out! https://patreon.com/eltontay11
+
 
 # FAQ
 
