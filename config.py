@@ -6,47 +6,20 @@
 
 # MainGuildID : The main Guild’s ID For mod mail to be used in.
 # StaffGuildID : The staff Guild’s ID For mod mail to be used in. This will be the server where all Modmail Threading and Logging will occur.
-# ModMailCatagoryID : The Catagory ID of the Catagory Modmail shohld use.
+# ModMailCatagoryID : The Catagory ID of the Catagory Modmail shohld use. Must be in staff guild.
 
-MainGuildID = 00000000000
-StaffGuildID = 00000000000
-ModMailCatagoryID = 00000000000
+MainGuildID = 000000000000000000
+StaffGuildID = 000000000000000000
+ModMailCatagoryID = 000000000000000000
 
-# ModMail Main Configuration
-
-# PossibleTopicOptions : List of possible topics of the thread.
-
-# Tier1SupportDiscordRoleID : The Discord Role ID of the Tier 1 Support Role. Users with this role will be labelled Tier 1 Support
-
-# Tier2SupportDiscordRoleID : The Discord Role ID of the Tier 2 Support Role. Users with this role will be labelled Tier 2 Support
-
-# Tier3SupportDiscordRoleID : The Discord Role ID of the Tier 3 Support Role. Users with this role will be labelled Tier 3 Support
-
-# ModMailCannotReplyIfNoTier : If set to True, users with no support tier rank cannot reply to modmail. If False. the optional Value, ModmailNoTierLabel, will be set to the label if somebody with no tier rank replies. Remember to uncomment it if you are using it.
-
-ModMailCannotReplyIfNoTier = True
-#ModmailNoTierLabel = "Unranked"
-
-# Users will be labelled based on their topmost role.
-
-PossibleTopicOptions = ["Staff","Bot"]
-Tier1SupportDiscordRoleID = 00000
-Tier2SupportDiscordRoleID = 00000
-Tier3SupportDiscordRoleID = 00000
-
-# DiscordRoleRequiredToCloseThreads : The RoleID of the role required to close threads. Leave as None to default to Tier 1 Support
-
-DiscordRoleRequiredToCloseThreads = None
-
-# DiscordModmailLogChannel : The channel where the bot should send log to. Put 0 to disable, Put 1 to make the bot automatically create one.
-
-DiscordModmailLogChannel = 0
+# DiscordModmailLogChannel : The log channel for modmail threads.
+DiscordModmailLogChannel = 000000000000000000
 
 # BotToken : The bot token for the Oauth2 App.
 # BotPlayingStatus : The bot playing status as shown in discord.
 # BotPrefix : The bot prefix.
-BotToken = "ABCDEFG"
-BotPlayingStatus = "DM to contact mods!"
+BotToken = "YOURBOTTOKENISHELLO"
+BotPlayingStatus = "Hello! DM me to contact mods."
 BotPrefix = "mail."
 
 # The 4 options below take booleans (True / False).
@@ -54,12 +27,10 @@ BotPrefix = "mail."
 # BotBoundToGuilds : Set if the bot should be bound to the Main and Staff Guilds. (Should the bot auto-leave other guilds when it is added to them?)
 # BotDMOwnerOnRestart : Set if the bot should DM the Oauth2 Owner everytime on Restart.
 # BotAutoReconnect : Set if the bot should Automatically Reconnect when disconnected.
-# BotUseEmbeds : Weather to use rich embeds.
 LogCommands = True
 BotBoundToGuilds = True
-BotDMOwnerOnRestart = False
+BotDMOwnerOnRestart = True
 BotAutoReconnect = True
-BotUseEmbeds = True
+
 
 #End of config.
-
