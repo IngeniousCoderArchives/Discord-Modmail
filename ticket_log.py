@@ -35,7 +35,7 @@ async def ticketlog(channel,user,bot):
     for item in LOGS:
          try:
            file.write(item)
-        except:
+         except:
             pass
     file.close()
     channel = bot.get_channel(DiscordModmailLogChannel)
