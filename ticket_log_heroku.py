@@ -38,7 +38,7 @@ async def ticketlog(channel,user,bot):
         except:
             pass
     file.close()
-    channel = bot.get_channel(DiscordModmailLogChannel)
+    channel = bot.get_channel(int(os.environ.get("DiscordModmailLogChannel")))
     file = open(f"tickets/{str(user.id)}-{str(log_no)}.txt","rb")
     await channel.send(content=f"New Therad with {user.name}#{user.discriminator} closed.",file=discord.File(fp=file))
     
