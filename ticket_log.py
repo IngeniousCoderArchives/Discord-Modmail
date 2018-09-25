@@ -33,7 +33,10 @@ async def ticketlog(channel,user,bot):
 
     file = open(f"tickets/{str(user.id)}-{str(log_no)}.txt","w")
     for item in LOGS:
-         file.write(item)
+         try:
+           file.write(item)
+        except:
+            pass
     file.close()
     channel = bot.get_channel(DiscordModmailLogChannel)
     file = open(f"tickets/{str(user.id)}-{str(log_no)}.txt","rb")
