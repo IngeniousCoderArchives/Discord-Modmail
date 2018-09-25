@@ -14,10 +14,10 @@ from datetime import datetime, timedelta
 t_1_uptime = time.perf_counter()
 
 default_config = {
-"MainGuildID" : os.environ.get("MainGuildID"),
-"StaffGuildID" : os.environ.get("StaffGuildID"),
-"ModMailCatagoryID" : os.environ.get("ModMailCatagoryID"),
-"DiscordModmailLogChannel" : os.environ.get("DiscordModmailLogChannel"),
+"MainGuildID" : int(os.environ.get("MainGuildID")),
+"StaffGuildID" : int(os.environ.get("StaffGuildID")),
+"ModMailCatagoryID" : int(os.environ.get("ModMailCatagoryID")),
+"DiscordModmailLogChannel" : int(os.environ.get("DiscordModmailLogChannel")),
 "BotToken" : os.environ.get("BotToken"),
 "BotPlayingStatus" : os.environ.get("BotPlayingStatus"),
 "BotPrefix" : os.environ.get("BotPrefix"),
