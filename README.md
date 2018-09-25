@@ -43,6 +43,8 @@ A: Modmail commands can only be used in the modmail thread channels. Thus, whoev
 
 - Config Var “From Heroku” to divert all data storage to channel based. (to support flexibility)
 
+--> Storage will be stored in channel topics. SPAMSPAMSPAM
+
 - View whole blacklist
 
 - Custom Start/Close Thread messages
