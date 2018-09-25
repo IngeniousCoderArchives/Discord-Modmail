@@ -10,6 +10,43 @@ Version 1.0.0
 
 3. Run ```run_launcher.bat``` and follow instructions!
 
+## Setup (Heroku)
+
+**DISCLAIMER : HEROKU IS A FREE HOSTING PLATFORM AND I MADE THE BOT SUPPORT HEROKU. HOWEVER, AS THE CODE FOR HEROKU IS DIFFERENT FROM THE STANDARD CODE (ye fuck storage on heroku), UPDATES THAT GO TO THE MAIN BOT MIGHT NOT BE ROLLED OUT INSTANTLY ON THE HEROKU VERSION.**
+
+1. Fork this repository.
+
+2. Get an account on heroku.com.
+
+3. Press "Create a new app", select "Python app", give your app a name.
+
+4. At deploy, select "Github" And link to your forked repo.
+
+5. Press "Manual Deploy"
+
+6. Go to app settings, press reveal config vars.
+
+7. Enter ALL the config variables listed below and their respective value.
+
+|Config Var|Value|
+|------|-------|
+|MainGuildID|int:The Main Guilds's ID|
+|StaffGuildID|int:The Staff Guild's ID. Can be the same as MainGuildID.|
+|ModMailCatagoryID|int:The Modmail Catagory's ID|
+|DiscordModmailLogChannel|int:The ID of the Modmail Logging Channel|
+|**BotToken**|str:The Bot's Token|
+|BotPlayingStatus|str:The Bot's Playing Status|
+|BotPrefix|str:The Bot's Prefix|
+|LogCommands|bool:True/False. Since you are hosting on heroku, this would not affect regardless of input, but it must be a boolean.|
+|BotBoundToGuilds|bool:True/False. Weather the bot should be bounded to the Main and Staff Guilds.|
+|BotDMOwnerOnRestart|bool:True/False. Wheater the bot should DM bot owner when restart.|
+|BotAutoReconnect|bool:True/False Wheater the bot should auto-reconnect if it becomes disconnected.|
+|**FROM_HEROKU**|True. THIS MUST BE TRUE.|
+
+8. Go to Workers, and start the worker.
+
+9. The bot is up!
+
 ## Usage
 
 ### Commands
@@ -42,8 +79,6 @@ A: Modmail commands can only be used in the modmail thread channels. Thus, whoev
 # TODO
 
 - Config Var “From Heroku” to divert all data storage to channel based. (to support flexibility)
-
---> Storage will be stored in channel topics. SPAMSPAMSPAM
 
 - View whole blacklist
 

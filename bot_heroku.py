@@ -1,12 +1,9 @@
 # Main Bot Script
-import os
-
-
-
 import discord
+import os
 from config import *
 from discord.ext import commands
-from ticket_log import ticketlog as create_tlog
+from ticket_log_heroku import ticketlog as create_tlog
 import textwrap
 from contextlib import redirect_stdout
 from discord import Webhook, RequestsWebhookAdapter
@@ -17,22 +14,21 @@ from datetime import datetime, timedelta
 t_1_uptime = time.perf_counter()
 
 default_config = {
-"MainGuildID" : MainGuildID,
-"StaffGuildID" : StaffGuildID,
-"ModMailCatagoryID" : ModMailCatagoryID,
-"DiscordModmailLogChannel" : DiscordModmailLogChannel,
-"BotToken" : BotToken,
-"BotPlayingStatus" : BotPlayingStatus,
-"BotPrefix" : BotPrefix,
-"LogCommands" : LogCommands,
-"BotBoundToGuilds" : BotBoundToGuilds,
-"BotDMOwnerOnRestart" : BotDMOwnerOnRestart,
-"BotAutoReconnect" : BotAutoReconnect,
+"MainGuildID" : os.environ.get("MainGuildID"),
+"StaffGuildID" : os.environ.get("StaffGuildID"),
+"ModMailCatagoryID" : os.environ.get("ModMailCatagoryID"),
+"DiscordModmailLogChannel" : os.environ.get("DiscordModmailLogChannel"),
+"BotToken" : os.environ.get("BotToken"),
+"BotPlayingStatus" : os.environ.get("BotPlayingStatus"),
+"BotPrefix" : os.environ.get("BotPrefix"),
+"LogCommands" : os.environ.get("LogCommands"),
+"BotBoundToGuilds" : os.environ.get("BotBoundToGuilds"),
+"BotDMOwnerOnRestart" : os.environ.get("BotDMOwnerOnRestart"),
+"BotAutoReconnect" : os.environ.get("BotAutoReconnect")
 }
 
 bot = commands.Bot(command_prefix=default_config.get('BotPrefix'),description="IngeniousCoder's Modmail Bot")
 bot.remove_command("help")
-
 
 
 
@@ -41,6 +37,25 @@ async def on_ready():
     global bot_owner
     bot_owner = await bot.application_info()
     bot_owner = bot_owner.owner
+    guild = discord.utils.get(bot.guilds,id=default_config.get("StaffGuildID"))
+    already_done = False
+    overwrites = {
+      guild.default_role: discord.PermissionOverwrite(read_messages=False),
+      guild.me: discord.PermissionOverwrite(read_messages=True)
+     }
+    for channel in guild.channels:
+        if channel.name == "MMDATA":
+            already_done = True
+    if not already_done:
+        await bot_owner.send("A Catagory MMDATA has been created. DO NOT delete **anything there.**")
+        catag = await guild.create_category_channel(name="MMDATA",overwrites=overwrites)
+        txt = await guild.create_text_channel(name="mm-ticket-cache",category=catag)
+        await txt.edit(topic="{}")
+        txt = await guild.create_text_channel(name="mm-logs",category=catag)
+        await txt.edit(topic="{}")
+        txt = await guild.create_text_channel(name="mm-blacklist",category=catag)
+        await txt.edit(topic="[]")
+    
     print("Bot has logged in!")
     if default_config.get("BotDMOwnerOnRestart"):
         await bot_owner.send("The Modmail Bot has Restared! \nNote: You specified for the bot to message you on restart. To disable, Change BotDMOwnerOnRestart in config.py to False.")
@@ -214,9 +229,9 @@ class ModMailThread():
 async def CheckThread(user):
      """Check if a user has an existing thread
        IF the user has an existing thread, returns the ModMailThread object. If not, returns None"""
-     file = open("ticket_cache.txt","r")
-     data = ast.literal_eval(file.read())
-     file.close()
+     guild = discord.utils.get(bot.guilds,id=default_config.get("MainGuildID"))
+     channel = discord.utils.get(guild.channels,name="mm-ticket-cache")
+     data = ast.literal_eval(channel.topic)
      thread_chn = data.get(user.id,None)
      if thread_chn is None:
          #passed is either invalid, or no user
@@ -232,9 +247,9 @@ async def CheckThread(user):
 
 async def CreateThread(user):
     """Create a thread. yields a ModMailThread Object"""
-    file = open("blacklist.txt","r")
-    blacklist = ast.literal_eval(file.read())
-    file.close()
+    guild = discord.utils.get(bot.guilds,id=default_config.get("MainGuildID"))
+    channel = discord.utils.get(guild.channels,name="mm-blacklist")
+    blacklist = ast.literal_eval(channel.topic)
     if user.id in blacklist:
         await user.send("You are blacklisted from using modmail!")
         return
@@ -243,20 +258,12 @@ async def CreateThread(user):
     chn = await guild.create_text_channel(f"{user.name}-{user.discriminator}",category=catag)
     await chn.send(f"@here Modmail Thread with **{user.name}#{user.discriminator}** has been started.")
     await user.send("Thank you for the message. A staff member will reply to you as soon as possible.")    
-    file = open("ticket_cache.txt","r")
-    data = ast.literal_eval(file.read())
-    file.close()
+    guild = discord.utils.get(bot.guilds,id=default_config.get("MainGuildID"))
+    channel = discord.utils.get(guild.channels,name="mm-ticket-cache")
+    data = ast.literal_eval(channel.topic)
     data[user.id] = chn.id
-    file = open("ticket_cache.txt","w")
-    file.write(str(data))
-    file.close()
-    #process prev logs?
-    log_no = 0
-    for file in os.listdir("tickets"):
-       if file.startswith(f"{str(user.id)}"):
-           log_no = log_no+1
-    if log_no != 0:
-        await chn.send(f"This user has {log_no} previous threads! Use `{default_config.get('BotPrefix')}logs` to view them.")
+    await channel.edit(topic=str(data))
+    await chn.send("You are running Modmail on heroku. As such, the bot cannot check for previous logs.")
     return ModMailThread(channel=chn,user=user)
 
 async def ReplyTo(thread2,message,mod=False):
@@ -348,13 +355,11 @@ async def close(ctx):
     await ctx.send("Closing Thread...")
     #Generate thread logs
     await create_tlog(ctx.channel,thread.user,bot)
-    file = open("ticket_cache.txt","r")
-    current = ast.literal_eval(file.read())
-    file.close()
-    current.pop(thread.user.id)
-    file = open('ticket_cache.txt','w')
-    file.write(str(current))
-    file.close()
+    guild = discord.utils.get(bot.guilds,id=default_config.get("MainGuildID"))
+    channel = discord.utils.get(guild.channels,name="mm-ticket-cache")
+    data = ast.literal_eval(channel.topic)
+    data.pop(thread.user.id)
+    await channel.edit(topic=str(data))
     await ctx.channel.delete()
     await thread.user.send(f"Your modmail thread has been closed by {ctx.message.author.name}#{ctx.message.author.discriminator}. Please reply to start a new therad.")
 
@@ -362,58 +367,37 @@ async def close(ctx):
 @bot.command()
 @commands.has_permissions(manage_guild=True)
 async def logs(ctx,user:discord.Member):
-    sent = False
-    for file in os.listdir("tickets"):
-       if file.startswith(f"{str(user.id)}"):
-           file2 = open(f"tickets/{file}","rb")
-           await ctx.send(file=discord.File(fp=file2))
-           sent = True
-           file2.close()
-    if not sent:
-        await ctx.send("No logs found.")
-"""
-TODO :
+    await ctx.send("This command does not work on heroku-hosted modmail instance.")
 
-blacklist, unblacklist - Blacklist user 
-other cmds require manage_server perm
-"""
 
 @bot.command()
 @commands.has_permissions(manage_guild=True)
 async def blacklist(ctx,user:discord.User):
-    file = open("blacklist.txt","r")
-    current = ast.literal_eval(file.read())
-    file.close()
+    guild = discord.utils.get(bot.guilds,id=default_config.get("MainGuildID"))
+    channel = discord.utils.get(guild.channels,name="mm-blacklist")
+    current = ast.literal_eval(channel.topic)
     if not user.id in current:
       current.append(user.id)
     else:
       await ctx.send("Already blacklisted!")
       return
-    file = open("blacklist.txt","w")
-    file.write(str(current))
-    file.close()
+    await channel.edit(topic=str(current))
     await ctx.send("Done!")
 
 
 @bot.command()
 @commands.has_permissions(manage_guild=True)
 async def unblacklist(ctx,user:discord.User):
-    file = open("blacklist.txt","r")
-    current = ast.literal_eval(file.read())
-    file.close()
+    guild = discord.utils.get(bot.guilds,id=default_config.get("MainGuildID"))
+    channel = discord.utils.get(guild.channels,name="mm-blacklist")
+    current = ast.literal_eval(channel.topic)
     try:
         current.remove(user.id)
     except:
         await ctx.send("User is not blacklisted!")
         return
-    file = open("blacklist.txt","w")
-    file.write(str(current))
-    file.close()
+    await channel.edit(topic=str(current))
     await ctx.send("Done!")
 
-
-if os.environ.get("FROM_HEROKU",default=False):
-    os.system("bot_heroku.py")
-    exit()
-else:
-  bot.run(default_config.get("BotToken"),reconnect=default_config.get("BotAutoReconnect"))
+    
+bot.run(default_config.get("BotToken"),reconnect=default_config.get("BotAutoReconnect"))
