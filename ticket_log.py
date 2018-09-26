@@ -33,12 +33,12 @@ async def ticketlog(channel,user,bot):
 
     file = open(f"tickets/{str(user.id)}-{str(log_no)}.txt","w")
     for item in LOGS:
-         try:
-           file.write(item)
-         except:
+        try:
+          file.write(item)
+        except:
             pass
     file.close()
     channel = bot.get_channel(DiscordModmailLogChannel)
     file = open(f"tickets/{str(user.id)}-{str(log_no)}.txt","rb")
-    await channel.send(content=f"New Therad with {user.name}#{user.discriminator} closed.",file=discord.File(fp=file))
+    await channel.send(content=f"New Thread with {user.name}#{user.discriminator} closed.",file=discord.File(fp=file))
     

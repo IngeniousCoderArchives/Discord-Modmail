@@ -36,7 +36,7 @@ async def ticketlog(channel,user,bot):
     file.close()
     channel = bot.get_channel(int(os.environ.get("DiscordModmailLogChannel")))
     file = open(f"{str(user.id)}-{str(log_no)}.txt","rb")
-    await channel.send(content=f"New Therad with {user.name}#{user.discriminator} closed.",file=discord.File(fp=file))
+    await channel.send(content=f"New Thread with {user.name}#{user.discriminator} closed.",file=discord.File(fp=file))
     chn2 = discord.utils.get(bot.guilds,id=int(os.environ.get("StaffGuildID")))
     chn3 = discord.utils.get(chn2.channels,name="mm-logs")
     file = open(f"{str(user.id)}-{str(log_no)}.txt","rb")
