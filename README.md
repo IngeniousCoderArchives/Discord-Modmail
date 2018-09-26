@@ -24,7 +24,7 @@ Version 1.0.0
 
 5. Press "Manual Deploy"
 
-6. Go to app settings, press reveal config vars.
+6. Go to the settings tab, press reveal config vars.
 
 7. Enter ALL the config variables listed below and their respective value. The end result should be something like [this](https://cdn.discordapp.com/attachments/490011895663820811/494074082292137985/unknown.png)
 
@@ -46,7 +46,7 @@ Version 1.0.0
 
 Reference : You can refer to this video which teaches you how to host a bot in heroku. However, please DO NOT FOLLOW STEP BY STEP because your target here is to get a feel on how to create a bot on heroku not follow what it teaches. 
 
-Video : https://www.youtube.com/watch?v=6za78ipFzg4
+Video : https://www.youtube.com/watch?v=6za78ipFzg4 (see from 2:13 minute mark)
 
 
 8. Go to Workers, and start the worker.
