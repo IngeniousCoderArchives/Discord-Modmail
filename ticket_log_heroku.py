@@ -26,12 +26,8 @@ async def ticketlog(channel,user,bot):
     LOGS.append(f"THREADS FOR {user.name}#{user.discriminator} ({str(user.id)}) on {channel.created_at} UTC")
     LOGS = LOGS[::-1]
     #Determine the filename to save logs as
-    log_no = 1
-    for file in os.listdir("tickets"):
-       if file.startswith(f"{str(user.id)}"):
-           log_no = log_no+1
-
-    file = open(f"tickets/{str(user.id)}-{str(log_no)}.txt","w")
+    log_no = "LOG"
+    file = open(f"{str(user.id)}-{str(log_no)}.txt","w")
     for item in LOGS:
         try:
           file.write(item)
@@ -39,6 +35,10 @@ async def ticketlog(channel,user,bot):
             pass
     file.close()
     channel = bot.get_channel(int(os.environ.get("DiscordModmailLogChannel")))
-    file = open(f"tickets/{str(user.id)}-{str(log_no)}.txt","rb")
+    file = open(f"{str(user.id)}-{str(log_no)}.txt","rb")
     await channel.send(content=f"New Therad with {user.name}#{user.discriminator} closed.",file=discord.File(fp=file))
+    chn2 = discord.utils.get(bot.guilds,id=os.environ.get("StaffGuildID"))
+    chn3 = discord.utils.get(chn2.channels,name="mm-logs")
+    await chn3.send(file=discord.File(fp=file))
+    file.close()
     
