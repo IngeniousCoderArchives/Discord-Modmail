@@ -264,7 +264,7 @@ async def CreateThread(user):
     data = ast.literal_eval(channel.topic)
     data[user.id] = chn.id
     await channel.edit(topic=str(data))
-    logs = await get_all_logs(ctx)
+    logs = await get_all_logs(guild)
     log = 0
     for key,value in logs.items():
         if key.startswith(f"{str(user.id)}"):
@@ -374,7 +374,7 @@ async def close(ctx):
 @bot.command()
 @commands.has_permissions(manage_guild=True)
 async def logs(ctx,user:discord.Member):
-    logs = await get_all_logs(ctx)
+    logs = await get_all_logs(ctx.guild)
     log = False
     for key,value in logs.items():
         if key.startswith(f"{str(user.id)}"):
@@ -387,7 +387,7 @@ async def logs(ctx,user:discord.Member):
     
 async def get_all_logs(ctx):
     returnob = {}
-    channel = discord.utils.get(ctx.guild.channels,name="mm-logs")
+    channel = discord.utils.get(guild.channels,name="mm-logs")
     async for message in channel.history(limit=2000000):
         try:
           logfile = message.attachments[0]
