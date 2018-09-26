@@ -367,7 +367,7 @@ async def close(ctx):
 @bot.command()
 @commands.has_permissions(manage_guild=True)
 async def logs(ctx,user:discord.Member):
-    logs = await get_all_logs()
+    logs = await get_all_logs(ctx)
     log = False
     for key,value in logs.items():
         if key.startswith(f"{str(user.id)}"):
@@ -378,7 +378,7 @@ async def logs(ctx,user:discord.Member):
 
 
     
-async def get_all_logs():
+async def get_all_logs(ctx):
     returnob = {}
     channel = discord.utils.get(ctx.guild.channels,name="mm-logs")
     async for message in channel.history(limit=2000000):
