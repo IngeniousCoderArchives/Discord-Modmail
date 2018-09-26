@@ -385,7 +385,7 @@ async def logs(ctx,user:discord.Member):
 
 
     
-async def get_all_logs(ctx):
+async def get_all_logs(guild):
     returnob = {}
     channel = discord.utils.get(guild.channels,name="mm-logs")
     async for message in channel.history(limit=2000000):
