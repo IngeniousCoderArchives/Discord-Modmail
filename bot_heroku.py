@@ -384,7 +384,7 @@ async def get_all_logs(ctx):
     async for message in channel.history(limit=2000000):
         logfile = message.attachments[0]
         returnob[logfile.filename] = logfile.url
-    print(returnobj)
+    print(returnob)
     print("-----------------")
     return returnob
         
