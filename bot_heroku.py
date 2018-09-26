@@ -264,7 +264,13 @@ async def CreateThread(user):
     data = ast.literal_eval(channel.topic)
     data[user.id] = chn.id
     await channel.edit(topic=str(data))
-    await chn.send("You are running Modmail on heroku. As such, the bot cannot check for previous logs.")
+    logs = await get_all_logs(ctx)
+    log = 0
+    for key,value in logs.items():
+        if key.startswith(f"{str(user.id)}"):
+            log += 1
+    if not log == 0:
+        await ctx.send(f"User has {log} previous logs! Do `{default_config.get('BotPrefix')}logs {str(user.id)}` to view them!")
     return ModMailThread(channel=chn,user=user)
 
 async def ReplyTo(thread2,message,mod=False):
