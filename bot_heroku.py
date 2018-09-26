@@ -8,6 +8,7 @@ import textwrap
 from contextlib import redirect_stdout
 from discord import Webhook, RequestsWebhookAdapter
 import time
+from random import choice
 import ast
 import io, traceback
 from datetime import datetime, timedelta
@@ -382,10 +383,12 @@ async def get_all_logs(ctx):
     returnob = {}
     channel = discord.utils.get(ctx.guild.channels,name="mm-logs")
     async for message in channel.history(limit=2000000):
-        logfile = message.attachments[0]
-        returnob[logfile.filename] = logfile.url
-    print(returnob)
-    print("-----------------")
+        try:
+          logfile = message.attachments[0]
+          colour = ''.join([choice('0123456789ABCDEF') for x in range(6)])
+          returnob[f"{logfile.filename}-{colour}"] = logfile.url
+        except:
+          pass
     return returnob
         
 
