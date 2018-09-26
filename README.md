@@ -89,9 +89,9 @@ A: NO. The bot stores data on the channels. As such, those channels cannot be de
 
 # TODO
 
-- Config Var “From Heroku” to divert all data storage to channel based. (to support flexibility)
-
 - View whole blacklist
+
+- Show edited messages from user
 
 - Custom Start/Close Thread messages
 
