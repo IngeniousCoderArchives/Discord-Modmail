@@ -367,7 +367,7 @@ async def close(ctx):
 @bot.command()
 @commands.has_permissions(manage_guild=True)
 async def logs(ctx,user:discord.Member):
-    logs = get_all_logs()
+    logs = await get_all_logs()
     log = False
     for key,value in logs.items():
         if key.startswith(f"{str(user.id)}"):
