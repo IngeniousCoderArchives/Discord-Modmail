@@ -34,3 +34,9 @@ BotAutoReconnect = True
 
 
 #End of config.
+
+
+# DO NOT EDIT THIS
+# No, seriously this will wipe your config.
+
+CONFIG_VER = 1
