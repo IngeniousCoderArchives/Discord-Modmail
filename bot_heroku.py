@@ -47,7 +47,7 @@ async def on_ready():
         if channel.name == "MMDATA":
             already_done = True
     if not already_done:
-        await bot_owner.send("A Catagory MMDATA has been created. DO NOT delete **anything there.**")
+        await bot_owner.send("A Catagory MMDATA has been created. DO NOT delete **anything there.** **DO NOT SEND ANY MESSAGES INTO ANY CHANNEL TOO.**")
         catag = await guild.create_category_channel(name="MMDATA",overwrites=overwrites)
         txt = await guild.create_text_channel(name="mm-ticket-cache",category=catag)
         await txt.edit(topic="{}")
@@ -367,8 +367,25 @@ async def close(ctx):
 @bot.command()
 @commands.has_permissions(manage_guild=True)
 async def logs(ctx,user:discord.Member):
-    await ctx.send("This command does not work on heroku-hosted modmail instance.")
+    logs = get_all_logs()
+    log = False
+    for key,value in logs.items():
+        if key.startswith(f"{str(user.id)}"):
+            await ctx.send(value)
+            log = True
+    if not log:
+        await ctx.send("No logs found!")
 
+
+    
+async def get_all_logs():
+    returnob = {}
+    channel = discord.utils.get(ctx.guild.channels,name="mm-logs")
+    async for message in channel.history(limit=2000000):
+        logfile = message.attachments[0]
+        returnob[logfile.filename] = logfile.url
+    return returnob
+        
 
 @bot.command()
 @commands.has_permissions(manage_guild=True)
