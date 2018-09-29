@@ -62,7 +62,7 @@ Do ```{prefix}help``` in the staff guild for help.
 
 ## Support
 
-https://discord.gg/BnZbw8W or open a ticket here.
+Open a ticket here, or email eltontay11@gmail.com . 
 
 ## Donate
 
