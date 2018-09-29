@@ -102,3 +102,5 @@ A: NO. The bot stores data on the channels. As such, those channels cannot be de
 - Anonymous reply
 
 - Use user's top role instead of (Mod)
+
+- From_HEROKU if one or more data channels deleted, automatically recreate them. 
