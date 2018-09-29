@@ -98,3 +98,7 @@ A: NO. The bot stores data on the channels. As such, those channels cannot be de
 - Ratings , rate <uuid>
 
 - Reverse typing proxy
+
+- Anonymous reply
+
+- Use user's top role instead of (Mod)
