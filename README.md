@@ -107,4 +107,4 @@ A: NO. The bot stores data on the channels. As such, those channels cannot be de
 
 - From_HEROKU if one or more data channels deleted, automatically recreate them. 
 
-- Edit the messages already sent. User can do !edit <modmail message id, in the staff reply channel> <new text> --> this requires modmail to store <messageid of the message in the staff channel>:<messageid of the message in the user's dm>, so that it can edit the correct message
+- Edit the messages already sent. User can do !edit <modmail message id, in the staff reply channel> <new text> --> this requires modmail to store <messageid of the message in the staff channel>;<messageid of the message in the user's dm>, so that it can edit the correct message
