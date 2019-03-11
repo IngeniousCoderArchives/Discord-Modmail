@@ -1,3 +1,11 @@
+Another Application by IngeniousApplications
+![IA Logo](http://ingeniousapps.tk/cdn/IA_Logo.png)
+
+[Discord](http://ingeniousapps.tk/discord)
+
+[Website](http://ingeniousapps.tk)
+
+[Donate to us](https://patreon.com/eltontay11)
 
 
 # Discord Modmail
@@ -60,14 +68,13 @@ Video : https://www.youtube.com/watch?v=6za78ipFzg4 (see from 2:13 minute mark)
 Do ```{prefix}help``` in the staff guild for help.
 
 
-## Support
+## Author
 
-Open a ticket here, or email eltontay11@gmail.com . 
+- XtremeCoder
 
-## Donate
 
-Love the bot? Donate and help me out! https://patreon.com/eltontay11
-
+### Bug Reporting and Feature Requesting
+Use the Issues tab under this repository to report bugs and suggest features.
 
 # FAQ
 
