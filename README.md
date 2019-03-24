@@ -1,9 +1,9 @@
 Another Application by IngeniousApplications
-![IA Logo](http://ingeniousapps.tk/cdn/IA_Logo.png)
+![IA Logo](https://www.ingeniousapps.net/cdn/IA_Logo.png)
 
-[Discord](http://ingeniousapps.tk/discord)
+[Discord](https://www.ingeniousapps.net/discord)
 
-[Website](http://ingeniousapps.tk)
+[Website](https://www.ingeniousapps.net)
 
 [Donate to us](https://patreon.com/eltontay11)
 
