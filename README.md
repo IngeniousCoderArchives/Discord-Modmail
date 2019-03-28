@@ -1,5 +1,5 @@
 Another Application by IngeniousApplications
-![IA Logo](https://www.ingeniousapps.net/cdn/IALogo.png)
+![IA Logo](https://www.ingeniousapps.net/cdn/IALogo2.png)
 
 [Discord](https://www.ingeniousapps.net/discord)
 
