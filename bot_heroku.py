@@ -257,7 +257,7 @@ async def CreateThread(user):
     catag = bot.get_channel(default_config.get("ModMailCatagoryID"))
     guild = bot.get_guild(default_config.get("StaffGuildID"))
     chn = await guild.create_text_channel(f"{user.name}-{user.discriminator}",category=catag)
-    await chn.send(f"@here Modmail Thread with **{user.name}#{user.discriminator}** has been started.")
+    await chn.send(f"@here Modmail Thread with **{user.name}#{user.discriminator}** has been started.",mention=True)
     await user.send("Thank you for the message. A staff member will reply to you as soon as possible.")    
     guild = discord.utils.get(bot.guilds,id=default_config.get("MainGuildID"))
     channel = discord.utils.get(guild.channels,name="mm-ticket-cache")
