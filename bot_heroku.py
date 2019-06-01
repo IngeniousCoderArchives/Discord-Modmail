@@ -14,7 +14,7 @@ import io, traceback
 from datetime import datetime, timedelta
 t_1_uptime = time.perf_counter()
 
-default_config = {
+default_config_notsafe = {
 "MainGuildID" : int(os.environ.get("MainGuildID")),
 "StaffGuildID" : int(os.environ.get("StaffGuildID")),
 "ModMailCatagoryID" : int(os.environ.get("ModMailCatagoryID")),
@@ -28,6 +28,17 @@ default_config = {
 "BotAutoReconnect" : os.environ.get("BotAutoReconnect")
 }
 
+default_config = {}
+for key,value in default_config_notsafe.items():
+    if value in ["True","False"]:
+        # convert to boolean 
+        if value == "True":
+            value = True
+        if value == "False":
+            value = False
+    default_config[key] = value
+    
+    
 bot = commands.Bot(command_prefix=default_config.get('BotPrefix'),description="IngeniousCoder's Modmail Bot")
 bot.remove_command("help")
 
