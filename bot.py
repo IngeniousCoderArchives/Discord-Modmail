@@ -93,7 +93,8 @@ async def help(ctx):
       main_guild = bot.get_guild(default_config.get("MainGuildID"))
       help1 = discord.Embed(title='Hello!', description=f"I am an instance of [IngeniousCoder\'s Modmail Bot](https://github.com/IngeniousCoder/Discord-Modmail). DM me to contact the moderators of {main_guild.name}!", colour=0xDEADBF)
       help1.set_author(name='IngeniousCoder\'s Modmail Bot',icon_url="https://cdn.discordapp.com/attachments/388917080570986526/490075804496297995/8eebd924aeb72f681f0bc7c94226883e.png")
-      help1.add_field(name="Help me!",value="Donate to me [here](https://patreon.com/eltontay11) or [Star my repository!](https://github.com/IngeniousCoder/Discord-Modmail)",inline=False)
+      help1.add_field(name="Help me!",value="Donate to me [
+                      ](https://patreon.com/eltontay11) or [Star my repository!](https://github.com/IngeniousCoder/Discord-Modmail)",inline=False)
       help1.add_field(name="{}uptime".format(prefix), value="Shows bot uptime", inline=False)
       help1.add_field(name="{}help".format(prefix), inline=False, value="Shows the help message.")
       help1.add_field(name="{}info".format(prefix), inline=False, value="Shows bot info.")
@@ -241,7 +242,7 @@ async def CreateThread(user):
     catag = bot.get_channel(default_config.get("ModMailCatagoryID"))
     guild = bot.get_guild(default_config.get("StaffGuildID"))
     chn = await guild.create_text_channel(f"{user.name}-{user.discriminator}",category=catag)
-    await chn.send(f"@here Modmail Thread with **{user.name}#{user.discriminator}** has been started.")
+    await chn.send(f"@here Modmail Thread with **{user.name}#{user.discriminator}** has been started.",mention=True)
     await user.send("Thank you for the message. A staff member will reply to you as soon as possible.")    
     file = open("ticket_cache.txt","r")
     data = ast.literal_eval(file.read())
