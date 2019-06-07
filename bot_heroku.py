@@ -49,7 +49,7 @@ async def on_ready():
     global bot_owner
     bot_owner = await bot.application_info()
     bot_owner = bot_owner.owner
-    guild = discord.utils.get(bot.guilds,id=default_config.get("StaffGuildID"))
+    guild = discord.utils.get(bot.guilds,id=default_config.get("MainGuildID"))
     already_done = False
     overwrites = {
       guild.default_role: discord.PermissionOverwrite(read_messages=False),
